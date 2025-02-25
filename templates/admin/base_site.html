@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Mojo{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">Mojo</a></div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+{% block extrahead %}
+<style>
+  :root {
+    --primary: #074279;
+    --secondary: #101214;
+    --accent: #F79E11;
+    --header-color: var(--accent);
+    --header-link-color: var(--accent);
+    --body-quiet-color: #F0EEEC;
+    --header-bg: var(--primary);
+    --header-color: var(--accent);
+  }
+</style>
+{% endblock %}

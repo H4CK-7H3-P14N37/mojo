@@ -1,0 +1,15 @@
+<form method="post">
+    {% csrf_token %}
+    {{ formset }}
+    <input type="submit" value="Submit">
+</form>
+
+
+<table>
+    {% for k,v in results.items %}
+      <tr>
+        <td>{{ k }}</td>
+        <td>{{ v }}</td>
+      </tr>
+    {% endfor %}
+  </table>
