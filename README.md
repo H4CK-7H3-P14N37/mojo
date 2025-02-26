@@ -1,7 +1,7 @@
 # TODOs
 - REPORTING_TEAM needs to be updated in the generate_doc function to take an input. This means updating the Report model.
-- Work on Dockerfile
-- create a build.sh and run.sh to mount persistant volumes for Media and database
+- Page to import scan data, but functionality already exists in superdupperadmin
+- Guided flow to import findings and then generate reports 
 
 # Setup
 ## create persistent SECRET_KEY
@@ -46,3 +46,7 @@ password: redteamroxs
 ```
 docker rmi mojo
 ```
+
+
+# Preview of app
+![Mojo](pics/mojo.png)
