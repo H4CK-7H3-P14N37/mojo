@@ -1,0 +1,6 @@
+.env
+env/*
+reports/*
+media/*
+mojo.sqlite3
+static/*

@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Activate the virtualenv
+source ./env/bin/activate
+
 # Run database migrations
 python manage.py migrate --noinput
 
@@ -29,4 +32,4 @@ python manage.py shell -c "import json; from reportgen.models import Strength; [
 python manage.py shell -c "import json; from reportgen.models import Improvement; [Improvement.objects.get_or_create(improvement_subtle=item['improvement_subtle']) for item in json.load(open('default_data_jsons/improvement.json'))]"
 
 # Execute Gunicorn
-exec gunicorn mojo.wsgi:application --bind 0.0.0.0:8000 --workers 3
+gunicorn mojo.wsgi:application --bind 0.0.0.0:8000 --workers 3

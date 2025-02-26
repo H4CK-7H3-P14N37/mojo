@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-
+{% load static %}
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Mojo{% endblock %}
 
 {% block branding %}
@@ -11,6 +11,8 @@
 
 {% block nav-global %}{% endblock %}
 {% block extrahead %}
+{{ block.super }}
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 <style>
   :root {
     --primary: #074279;
