@@ -82,7 +82,7 @@ def generate_report_type(queryset, report_type):
                                     tmp_screen_dict = {
                                         'finding_subtle': finding_screenshot_obj.get('finding_subtle'),
                                         'finding_screenshot': os.path.join(
-                                            settings.BASE_DIR,
+                                            settings.MEDIA_ROOT,
                                             finding_screenshot_obj.get('finding_screenshot'))}
                                     findings_screenshot_dict_list.append(
                                         tmp_screen_dict)
@@ -106,7 +106,7 @@ def generate_report_type(queryset, report_type):
                             'strength_subtle': strength_obj.strength_subtle.replace(
                                 "\r", "").replace(
                                 "\n", ""), 'strength_screenshot': os.path.join(
-                                settings.BASE_DIR, strength_obj.strength_screenshot.path)}
+                                settings.MEDIA_ROOT, strength_obj.strength_screenshot.path)}
                     else:
                         tmp_strength_dict = {
                             'strength_subtle': strength_obj.strength_subtle.replace(
@@ -123,7 +123,7 @@ def generate_report_type(queryset, report_type):
                             'improvement_subtle': improvement_obj.improvement_subtle.replace(
                                 "\r", "").replace(
                                 "\n", ""), 'improvement_screenshot': os.path.join(
-                                settings.BASE_DIR, improvement_obj.improvement_screenshot.path)}
+                                settings.MEDIA_ROOT, improvement_obj.improvement_screenshot.path)}
                     else:
                         tmp_improvement_dict = {
                             'improvement_subtle': improvement_obj.improvement_subtle.replace(

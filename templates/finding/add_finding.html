@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Finding{% endblock %}
+
+{% block content %}
+<style>
+  /* Uniform styling for form groups and rows */
+  .form-group, .form-row {
+    margin-bottom: 15px;
+  }
+  .form-group label, .form-row label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+    vertical-align: top;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select,
+  .form-row input,
+  .form-row textarea,
+  .form-row select {
+    width: calc(100% - 160px);
+    padding: 5px;
+    margin: 0;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  .error {
+    color: red;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+  }
+</style>
+
+<h2>Add New Finding</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <fieldset>
+    <legend>Finding Details</legend>
+    {% for field in finding_form %}
+      <div class="form-group">
+         <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+         {{ field }}
+         {% if field.help_text %}
+           <small>{{ field.help_text }}</small>
+         {% endif %}
+         {% for error in field.errors %}
+           <span class="error">{{ error }}</span>
+         {% endfor %}
+      </div>
+    {% endfor %}
+  </fieldset>
+  
+  <fieldset>
+    <legend>Screenshots</legend>
+    <div id="formset_container">
+      {{ screenshot_formset.management_form }}
+      {% for form in screenshot_formset %}
+        <div class="screenshot-form form-group">
+          {% for field in form.visible_fields %}
+            <div class="form-row">
+              <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+              {{ field }}
+              {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <button type="button" id="add_form">Add Screenshot</button>
+  </fieldset>
+  
+  <input type="submit" value="Add Finding">
+</form>
+
+<script>
+// Dynamically add new screenshot forms.
+document.getElementById('add_form').addEventListener('click', function(e) {
+    e.preventDefault();
+    var container = document.getElementById('formset_container');
+    var totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    var formNum = parseInt(totalForms.value);
+    
+    // Clone the first screenshot form as a template.
+    var newForm = container.querySelector('.screenshot-form').cloneNode(true);
+    newForm.innerHTML = newForm.innerHTML.replace(/form-0-/g, 'form-' + formNum + '-');
+    
+    // Clear values in the new form's inputs.
+    var inputs = newForm.querySelectorAll('input');
+    inputs.forEach(function(input) {
+      if (input.type !== 'hidden') {
+        input.value = '';
+      }
+    });
+    
+    container.appendChild(newForm);
+    totalForms.value = formNum + 1;
+});
+</script>
+{% endblock %}

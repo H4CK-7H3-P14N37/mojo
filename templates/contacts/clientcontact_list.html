@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Client Contacts{% endblock %}
+
+{% block content %}
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #111;
+  }
+  th, td {
+    border: 1px solid #0f0;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #000;
+    font-weight: bold;
+  }
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .edit-button {
+    background-color: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .edit-button:hover {
+    background-color: #0f0;
+    color: #000;
+  }
+</style>
+
+<h2>Client Contacts</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Client Name</th>
+      <th>Contact Info</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in clientcontacts %}
+    <tr>
+      <td>{{ contact.client_name }}</td>
+      <td>{{ contact.client_contact }}</td>
+      <td class="action-buttons">
+        <a href="{% url 'edit_clientcontact' contact.pk %}" class="edit-button">Edit</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3">No Client Contacts found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

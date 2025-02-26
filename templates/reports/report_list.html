@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Reports List{% endblock %}
+
+{% block content %}
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #111;
+    font-weight: bold;
+  }
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .edit-button {
+    background-color: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+  .edit-button:hover {
+    background-color: #0f0;
+    color: #000;
+  }
+</style>
+
+<h2>Reports List</h2>
+<a href="{% url 'create_report' %}" class="edit-button">Create New Report</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>Report For</th>
+      <th>Test Type</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+    <tr>
+      <td>{{ report.report_for }}</td>
+      <td>{{ report.test_type.test_name }}</td>
+      <td>{{ report.start_date }}</td>
+      <td>{{ report.end_date }}</td>
+      <td class="action-buttons">
+        <a href="{% url 'edit_report' report.pk %}" class="edit-button">Edit</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">No reports found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

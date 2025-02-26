@@ -1,15 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Form and Table{% endblock %}
+
+{% block content %}
 <form method="post">
-    {% csrf_token %}
-    {{ formset }}
-    <input type="submit" value="Submit">
+  {% csrf_token %}
+  {{ formset }}
+  <input type="submit" value="Submit">
 </form>
-
-
 <table>
-    {% for k,v in results.items %}
-      <tr>
-        <td>{{ k }}</td>
-        <td>{{ v }}</td>
-      </tr>
-    {% endfor %}
-  </table>
+  {% for k,v in results.items %}
+  <tr>
+    <td>{{ k }}</td>
+    <td>{{ v }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

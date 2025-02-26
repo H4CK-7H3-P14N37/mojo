@@ -1,0 +1,137 @@
+[
+    {
+        "id": "28",
+        "score_override_name": "TLS Version 1.0 Protocol Detection (PCI DSS)",
+        "score_override_value": "8.5"
+    },
+    {
+        "id": "27",
+        "score_override_name": "TLS Version 1.1 Protocol Detection (PCI DSS)",
+        "score_override_value": "8.5"
+    },
+    {
+        "id": "26",
+        "score_override_name": "TLS Version 1.1 Protocol Detection",
+        "score_override_value": "8.5"
+    },
+    {
+        "id": "25",
+        "score_override_name": "TLS Version 1.0 Protocol Detection",
+        "score_override_value": "8.5"
+    },
+    {
+        "id": "24",
+        "score_override_name": "TLS Version 1.1 Protocol Deprecated",
+        "score_override_value": "8.5"
+    },
+    {
+        "id": "23",
+        "score_override_name": "TLS Version 1.0 Protocol Detection",
+        "score_override_value": "8.5"
+    },
+    {
+        "id": "22",
+        "score_override_name": "IPMI v2.0 Password Hash Disclosure",
+        "score_override_value": "7.8"
+    },
+    {
+        "id": "21",
+        "score_override_name": "Missing or Permissive Content-Security-Policy frame-ancestors HTTP Response Header",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "20",
+        "score_override_name": "Missing or Permissive X-Frame-Options HTTP Response Header",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "19",
+        "score_override_name": "SSL Cipher Block Chaining Cipher Suites Supported",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "18",
+        "score_override_name": "BGP Service Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "17",
+        "score_override_name": "AXIS Web Interface Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "16",
+        "score_override_name": "AXIS FTP Server Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "15",
+        "score_override_name": "nginx HTTP Server Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "14",
+        "score_override_name": "Non-compliant Strict Transport Security (STS)",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "13",
+        "score_override_name": "Network Time Protocol (NTP) Server Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "12",
+        "score_override_name": "Palo Alto Networks PAN-OS Firewall/Panorama Web UI Detection",
+        "score_override_value": "6.0"
+    },
+    {
+        "id": "11",
+        "score_override_name": "RTSP Server Type / Version Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "10",
+        "score_override_name": "SSL Certificate Signed Using Weak Hashing Algorithm (Known CA)",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "9",
+        "score_override_name": "Web Server Unconfigured - Default Install Page Present",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "8",
+        "score_override_name": "Web Server No 404 Error Code Check",
+        "score_override_value": "4.0"
+    },
+    {
+        "id": "7",
+        "score_override_name": "VNC Software Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "6",
+        "score_override_name": "TFTP Daemon Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "4",
+        "score_override_name": "HTTP Server Type and Version",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "3",
+        "score_override_name": "Apache HTTP Server Version",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "2",
+        "score_override_name": "FTP Server Detection",
+        "score_override_value": "5.0"
+    },
+    {
+        "id": "1",
+        "score_override_name": "HSTS Missing From HTTPS Server",
+        "score_override_value": "5.8"
+    }
+]

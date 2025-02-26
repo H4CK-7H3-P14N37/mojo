@@ -1,0 +1,122 @@
+[
+    {
+        "id": "38",
+        "strength_subtle": "JWT tokens signatures are validated using RS256.",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "33",
+        "strength_subtle": "No cpasswords in Group Policies found.",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "32",
+        "strength_subtle": "Password policy seems to be set to 14 characters with one complexity",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "31",
+        "strength_subtle": "MachineAccountQuota seems to be set to 0",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "30",
+        "strength_subtle": "No ASREPRoastable account found",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "29",
+        "strength_subtle": "Kerberoastable accounts were not crackable",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "28",
+        "strength_subtle": "NTLMv1 seems to be disabled on the network",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "26",
+        "strength_subtle": "Application escapes script, iframe, img, etc. html tags that can be used to do XSS",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "21",
+        "strength_subtle": "Digital signing is enabled at the domain level.",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "20",
+        "strength_subtle": "The LAN Manager authentication level is set to 5. This forces authentication to use NTLMv2 and refuses LM and NTLM hashes which can be used in pass-the-hash attacks.",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "19",
+        "strength_subtle": "Excellent incident response Time",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "18",
+        "strength_subtle": "No exploitable services",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "15",
+        "strength_subtle": "Input Sanitized for Profiles",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "14",
+        "strength_subtle": "Hardened TLS",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "13",
+        "strength_subtle": "Harden Session Cookies",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "11",
+        "strength_subtle": "Users on the domain were not able to issue certificates via the Certificate Authority server",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "8",
+        "strength_subtle": "Kerberoastable accounts were not crackable",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "7",
+        "strength_subtle": "Strong WiFi Encryption",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "6",
+        "strength_subtle": "Limited external attack surface",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "5",
+        "strength_subtle": "Strong password policy",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "4",
+        "strength_subtle": "SMBv1 Disabled",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "3",
+        "strength_subtle": "SMB Signing",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "2",
+        "strength_subtle": "Network Segmentation",
+        "strength_screenshot": ""
+    },
+    {
+        "id": "1",
+        "strength_subtle": "Limited attack surface",
+        "strength_screenshot": ""
+    }
+]

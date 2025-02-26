@@ -1,0 +1,94 @@
+{% load static %}
+<html>
+<head>
+  <title>{% block title %}mojo{% endblock %}</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
+  <style>
+    body {
+      background-color: #000; /* Dark background */
+      color: #0f0; /* Neon green text */
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%;
+      /* max-width: 800px; */
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #0f0;
+      margin: 0;
+    }
+    /* Style the header link to inherit the neon look */
+    header h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a {
+      color: #0f0;
+      text-decoration: none;
+      font-size: 1.5em;
+      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+      transition: color 0.3s ease;
+    }
+    /* Ensure visited links maintain neon green appearance */
+    a:visited {
+      color: #0f0;
+      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+    }
+    a:hover {
+      color: #fff;
+    }
+    a:active {
+      color: #f00;
+    }
+    input[type="submit"] {
+      background-color: #000;
+      color: #0f0;
+      border: 2px solid #0f0;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1em;
+      text-shadow: 0 0 5px #0f0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid #0f0;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #111;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/">mojo</a></h1>
+    </header>
+    {% block content %}
+    <!-- Child templates will override this block -->
+    {% endblock %}
+  </div>
+</body>
+</html>

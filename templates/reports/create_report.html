@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Create Report{% endblock %}
+
+{% block content %}
+<style>
+  /* Uniform styling for forms */
+  .form-group, .form-row {
+    margin-bottom: 15px;
+  }
+  .form-group label, .form-row label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+    vertical-align: top;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select,
+  .form-row input,
+  .form-row textarea,
+  .form-row select {
+    width: calc(100% - 160px);
+    padding: 5px;
+    margin: 0;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+  }
+  .error {
+    color: red;
+  }
+</style>
+
+<h2>Create Report</h2>
+<form method="post">
+  {% csrf_token %}
+  
+  <fieldset>
+    <legend>Report Details</legend>
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+        {{ field }}
+        {% if field.help_text %}
+          <small>{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </fieldset>
+  
+  <input type="submit" value="Create Report">
+</form>
+{% endblock %}
+

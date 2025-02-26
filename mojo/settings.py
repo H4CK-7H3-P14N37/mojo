@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,7 +59,9 @@ ROOT_URLCONF = 'mojo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['{}/templates'.format(BASE_DIR),],
+        'DIRS': [
+            os.path.join(BASE_DIR,'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +83,8 @@ WSGI_APPLICATION = 'mojo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'mojo.sqlite3',
+        'NAME': os.path.join(BASE_DIR,'mojo.sqlite3'),
+        
     }
 }
 
@@ -127,8 +131,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    '{}/static'.format(BASE_DIR)
+    os.path.join(BASE_DIR,'static')
 ]
+
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -140,7 +148,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 1000000
 
 ATOMIC_REQUESTS = True
 
-PT_REPORT_DIR = '{}/pentest_reports'.format(BASE_DIR)
+PT_REPORT_DIR = os.path.join(BASE_DIR,'reports')
 
 
 LOGIN_URL = '/superdupperadmin/login/'

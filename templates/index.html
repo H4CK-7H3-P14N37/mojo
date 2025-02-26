@@ -1,15 +1,28 @@
-{% load static %}
-<html>
-<head>
-<title>home</title>
-<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-<link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}home{% endblock %}
+
+{% block content %}
 <ul>
-<li><a href="/superdupperadmin/">superdupperadmin</a></li>
-<li><a href="/unique_findings/">unique_findings</a></li>
-<li><a href="/list_services/">list_services</a></li>
+  <li><a href="/superdupperadmin/">superdupperadmin</a></li>
+  <li><a href="/unique_findings/">unique_findings</a></li>
+  <li><a href="/list_services/">list_services</a></li>
+  <li><a href="/finding/add/">add_finding</a></li>
+  <li><a href="/findings/">list_findings</a></li>
+  <li><a href="/reports/">list_reports</a></li>
+  <li><a href="/report/create/">create_report</a></li>
+  <li><a href="/reports/generate/">generate_report</a>
+  <li><a href="/clientcontacts/">list_clientcontacts</a></li>
+  <li><a href="/clientcontact/create/">create_clientcontacts</a></li>
+  <li><a href="/rtcontacts/">list_rtcontacts</a></li>
+  <li><a href="/rtcontact/create/">create_rtcontacts</a></li>
+  <li><a href="/scoreoverrides/">list_scoreoverrides</a></li>
+  <li><a href="/scoreoverride/create/">create_scoreoverrides</a></li>
+  <li><a href="/strengths/">list_strengths</a></li>
+  <li><a href="/strength/create/">create_strengths</a></li>
+  <li><a href="/improvements/">list_improvements</a></li>
+  <li><a href="/improvement/create/">create_improvements</a></li>
+  <li><a href="/solutionoverrides/">list_solutionoverrides</a></li>
+  <li><a href="/solutionoverride/create/">create_solutionoverrides</a></li>
 </ul>
-</body>
-</html>
+{% endblock %}

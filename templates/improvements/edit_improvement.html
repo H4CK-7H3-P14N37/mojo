@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Improvements {% endblock %}
+
+{% block content %}
+<style>
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: inline-block;
+    width: 180px;
+    font-weight: bold;
+    color: #0f0;
+  }
+  .form-group input, .form-group textarea {
+    width: calc(100% - 190px);
+    padding: 5px;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+    color: #0f0;
+  }
+  .submit-button {
+    background-color: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .submit-button:hover {
+    background-color: #0f0;
+    color: #000;
+  }
+  .image-preview {
+    margin-top: 10px;
+  }
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #0f0;
+  }
+</style>
+
+<h2>Edit Improvements</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset>
+    <legend>Improvement Details</legend>
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+  </fieldset>
+
+  {% if form.instance.improvement_screenshot %}
+  <fieldset class="image-preview-box">
+    <legend>Screenshot Preview</legend>
+    <img src="{{ form.instance.improvement_screenshot.url }}" alt="{{ form.instance.improvement_subtle }}">
+    <p>{{ form.instance.improvement_subtle }}</p>
+  </fieldset>
+  {% endif %}
+
+  <input type="submit" value="Save Changes" class="submit-button">
+</form>
+{% endblock %}

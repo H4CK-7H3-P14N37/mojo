@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Improvements{% endblock %}
+{% block content %}
+<style>
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: inline-block;
+    width: 180px;
+    font-weight: bold;
+    color: #0f0;
+  }
+  .form-group input, .form-group textarea {
+    width: calc(100% - 190px);
+    padding: 5px;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+    color: #0f0;
+  }
+  .submit-button {
+    background-color: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .submit-button:hover {
+    background-color: #0f0;
+    color: #000;
+  }
+  .image-preview {
+    margin-top: 10px;
+  }
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #0f0;
+  }
+</style>
+
+<h2>Improvements</h2>
+<table>
+  <thead><tr><th>Subtle</th><th>Screenshot</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for improvement in improvements %}
+      <tr>
+        <td>{{ improvement.improvement_subtle }}</td>
+        <td>
+          {% if improvement.improvement_screenshot %}
+            <img src="{{ improvement.improvement_screenshot.url }}" style="max-width:100px;">
+          {% else %}No image{% endif %}
+        </td>
+        <td><a href="{% url 'edit_improvement' improvement.pk %}" class="edit-button">Edit</a></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="3">No Improvements found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

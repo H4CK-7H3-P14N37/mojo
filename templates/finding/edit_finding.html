@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Finding{% endblock %}
+
+{% block content %}
+<style>
+  /* Common styles for uniform layout */
+  .form-group, .form-row {
+    margin-bottom: 15px;
+  }
+  .form-group label, .form-row label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+    vertical-align: top;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select,
+  .form-row input,
+  .form-row textarea,
+  .form-row select {
+    width: calc(100% - 160px);
+    padding: 5px;
+    margin: 0;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+  }
+  .error {
+    color: red;
+  }
+  /* Gallery styling for current screenshots */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .gallery-item {
+    flex: 0 0 calc(25% - 15px);
+    text-align: center;
+    border: 1px solid #0f0;
+    padding: 5px;
+    background-color: #111;
+  }
+  .gallery-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .gallery-item p {
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  /* Styling for each screenshot form */
+  .screenshot-form {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #111;
+  }
+  .screenshot-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  /* 40% for fields and delete button, 60% for image preview */
+  .screenshot-fields-left {
+    flex: 0 0 40%;
+  }
+  .screenshot-preview-right {
+    flex: 0 0 60%;
+    text-align: center;
+  }
+  .screenshot-preview-right img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #0f0;
+  }
+  /* Delete row now within the left column, aligned to left */
+  .delete-row {
+    margin-top: 10px;
+    text-align: left;
+  }
+  /* Adjust label widths within screenshot form if needed */
+  .screenshot-form .form-row label {
+    width: 140px;
+  }
+  .screenshot-form .form-row input,
+  .screenshot-form .form-row textarea,
+  .screenshot-form .form-row select {
+    width: calc(100% - 150px);
+  }
+</style>
+
+<h2>Edit Finding</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <!-- Finding Details -->
+  <fieldset>
+    <legend>Finding Details</legend>
+    {% for field in form %}
+      <div class="form-group">
+         <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+         {{ field }}
+         {% if field.help_text %}
+           <small>{{ field.help_text }}</small>
+         {% endif %}
+         {% for error in field.errors %}
+           <span class="error">{{ error }}</span>
+         {% endfor %}
+      </div>
+    {% endfor %}
+  </fieldset>
+  
+  <!-- Current Screenshots Gallery -->
+  <fieldset>
+    <legend>Current Screenshots</legend>
+    <div class="gallery">
+      {% for screenshot in form.instance.screenshots.all %}
+        <div class="gallery-item">
+          <img src="{{ screenshot.finding_screenshot.url }}" alt="{{ screenshot.finding_subtle }}">
+          <p>{{ screenshot.finding_subtle }}</p>
+        </div>
+      {% empty %}
+        <p>No screenshots available.</p>
+      {% endfor %}
+    </div>
+  </fieldset>
+  
+  <!-- Update/Add Screenshots -->
+  <fieldset>
+    <legend>Update/Add Screenshots</legend>
+    <div id="screenshot_formset_container">
+      {{ screenshot_formset.management_form }}
+      {% for sform in screenshot_formset %}
+      <div class="screenshot-form">
+        <div class="screenshot-container">
+          <div class="screenshot-fields-left">
+            {{ sform.id }}  <!-- Hidden ID field ensures deletion works -->
+            {% for field in sform.visible_fields %}
+              {% if field.name != "DELETE" %}
+                <div class="form-group">
+                  <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                  {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+            <div class="delete-row">
+              <label for="{{ sform.prefix }}-DELETE">Delete:</label>
+              {{ sform.DELETE }}
+            </div>
+          </div>
+          <div class="screenshot-preview-right">
+            {% if sform.instance.pk and sform.instance.finding_screenshot %}
+              <img src="{{ sform.instance.finding_screenshot.url }}" alt="{{ sform.instance.finding_subtle }}">
+            {% else %}
+              <p>No image</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    <button type="button" id="add_screenshot_form">Add Screenshot</button>
+  </fieldset>
+  
+  <input type="submit" value="Save">
+</form>
+
+<script>
+  // Dynamically add a new screenshot form to the formset.
+  document.getElementById('add_screenshot_form').addEventListener('click', function(e) {
+      e.preventDefault();
+      var container = document.getElementById('screenshot_formset_container');
+      var totalForms = document.getElementById('id_screenshots-TOTAL_FORMS');
+      var formNum = parseInt(totalForms.value);
+      
+      // Clone the first screenshot form as a template.
+      var newForm = container.querySelector('.screenshot-form').cloneNode(true);
+      // Replace occurrences of the initial index (0) with the new index.
+      newForm.innerHTML = newForm.innerHTML.replace(/screenshots-0-/g, 'screenshots-' + formNum + '-');
+      
+      // Clear input values in the cloned form.
+      newForm.querySelectorAll('input').forEach(function(input) {
+          if (input.type !== 'hidden') {
+              input.value = '';
+          }
+      });
+      
+      container.appendChild(newForm);
+      totalForms.value = formNum + 1;
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}List Findings{% endblock %}
+
+{% block content %}
+<h2>Findings</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Engagement Name</th>
+      <th>Risk</th>
+      <th>Host</th>
+      <th>Protocol</th>
+      <th>Port</th>
+      <th>Name</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for finding in findings %}
+      <tr>
+        <td>{{ finding.nessus_scan_name }}</td>
+        <td>{{ finding.Risk }}</td>
+        <td>{{ finding.Host }}</td>
+        <td>{{ finding.Protocol }}</td>
+        <td>{{ finding.Port }}</td>
+        <td>{{ finding.Name }}</td>
+        <td><a href="{% url 'edit_finding' finding.pk %}">Edit</a></td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="7">No findings available.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

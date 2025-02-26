@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: inline-block;
+    width: 180px;
+    font-weight: bold;
+    color: #0f0;
+  }
+  .form-group input, .form-group textarea {
+    width: calc(100% - 190px);
+    padding: 5px;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+    color: #0f0;
+  }
+  .submit-button {
+    background-color: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .submit-button:hover {
+    background-color: #0f0;
+    color: #000;
+  }
+  /* Screenshot preview styling */
+  .screenshot-preview-box {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #111;
+    text-align: center;
+  }
+  .screenshot-preview-box img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #0f0;
+    display: block;
+    margin: 0 auto;
+  }
+  .screenshot-preview-box p {
+    color: #0f0;
+    font-size: 1em;
+    margin-top: 5px;
+  }
+  .screenshot-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #111;
+  }
+  .screenshot-fields {
+    flex: 0 0 60%;
+  }
+  .screenshot-preview {
+    flex: 0 0 40%;
+    text-align: center;
+  }
+  .screenshot-preview-right {
+    flex: 0 0 60%;
+    text-align: center;
+  }
+  .screenshot-preview-right img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #0f0;
+  }
+  .delete-checkbox {
+    margin-top: 10px;
+  }
+</style>
+
+<h2>{% block h2title %}{% endblock %}</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset>
+    <legend>{% block legendtitle %}{% endblock %}  Details</legend>
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+        {{ field }}
+        {% if field.errors %}
+          <div class="error">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </fieldset>
+  {% block screenshotpreview %}{% endblock %}
+  <input type="submit" value="Save" class="submit-button">
+</form>
+{% block jsscripts %}{% endblock %}
+{% endblock %}
+
+

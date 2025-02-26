@@ -1,0 +1,97 @@
+[
+    {
+        "id": "20",
+        "improvement_subtle": "Add other missing security headers. e.g. cross-origin-opener-policy and permissions-policy",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "19",
+        "improvement_subtle": "Implement CSP",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "18",
+        "improvement_subtle": "Network Segementation",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "17",
+        "improvement_subtle": "Harden local application login process",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "16",
+        "improvement_subtle": "Implement WAF",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "15",
+        "improvement_subtle": "Implement CSRF",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "14",
+        "improvement_subtle": "Ensure PowerShell Logging is enabled enterprise-wide",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "13",
+        "improvement_subtle": "Decommission End-of-Life Hosts",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "12",
+        "improvement_subtle": "Harden CSP",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "11",
+        "improvement_subtle": "Disable Verbose Logging",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "10",
+        "improvement_subtle": "Password Hashing",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "8",
+        "improvement_subtle": "Harden Session Cookies",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "7",
+        "improvement_subtle": "Enable STS",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "6",
+        "improvement_subtle": "Enable CSRF",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "5",
+        "improvement_subtle": "Disable Weak Ciphers",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "4",
+        "improvement_subtle": "Disable plaintext protocols",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "3",
+        "improvement_subtle": "Password Policy",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "2",
+        "improvement_subtle": "System hardening",
+        "improvement_screenshot": ""
+    },
+    {
+        "id": "1",
+        "improvement_subtle": "Patch management",
+        "improvement_screenshot": ""
+    }
+]

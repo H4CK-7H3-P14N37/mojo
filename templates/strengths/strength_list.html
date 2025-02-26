@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Strengths{% endblock %}
+{% block content %}
+<style>
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: inline-block; width: 180px; font-weight: bold; color: #0f0; }
+    .form-group input, .form-group textarea { width: calc(100% - 190px); padding: 5px; background-color: #111; color: #0f0; border: 1px solid #0f0; }
+    fieldset { border: 1px solid #0f0; padding: 10px; margin-bottom: 20px; }
+    legend { padding: 0 10px; font-size: 1.2em; color: #0f0; }
+    .submit-button { background-color: #000; color: #0f0; border: 2px solid #0f0; padding: 10px 20px; text-decoration: none; }
+    .submit-button:hover { background-color: #0f0; color: #000; }
+  </style>
+  
+<h2>Strengths</h2>
+<table>
+  <thead><tr><th>Subtle</th><th>Screenshot</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for strength in strengths %}
+      <tr>
+        <td>{{ strength.strength_subtle }}</td>
+        <td>
+          {% if strength.strength_screenshot %}
+            <img src="{{ strength.strength_screenshot.url }}" style="max-width:100px;">
+          {% else %}No image{% endif %}
+        </td>
+        <td><a href="{% url 'edit_strength' strength.pk %}" class="edit-button">Edit</a></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="3">No Strengths found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

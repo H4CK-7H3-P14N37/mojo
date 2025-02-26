@@ -1,0 +1,17 @@
+[
+    {
+        "id": "3",
+        "test_from_name": "Both Internal and External",
+        "test_from_value": "both"
+    },
+    {
+        "id": "2",
+        "test_from_name": "Internal",
+        "test_from_value": "internal"
+    },
+    {
+        "id": "1",
+        "test_from_name": "External",
+        "test_from_value": "external"
+    }
+]

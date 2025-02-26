@@ -1,0 +1,27 @@
+[
+    {
+        "id": "5",
+        "test_name": "Wifi Penetration Test",
+        "test_value": "wifi"
+    },
+    {
+        "id": "4",
+        "test_name": "Vulnerability Assessment",
+        "test_value": "vuln_assessment"
+    },
+    {
+        "id": "3",
+        "test_name": "Vulnerability Scan",
+        "test_value": "vuln_scan"
+    },
+    {
+        "id": "2",
+        "test_name": "Web Application Test",
+        "test_value": "webapp"
+    },
+    {
+        "id": "1",
+        "test_name": "Penetration Test",
+        "test_value": "pentest"
+    }
+]

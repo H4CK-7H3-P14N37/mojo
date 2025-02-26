@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Create Strength{% endblock %}
+{% block content %}
+<style>
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: inline-block;
+    width: 180px;
+    font-weight: bold;
+    color: #0f0;
+  }
+  .form-group input, .form-group textarea {
+    width: calc(100% - 190px);
+    padding: 5px;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+  }
+  fieldset {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  legend {
+    padding: 0 10px;
+    font-size: 1.2em;
+    color: #0f0;
+  }
+  .submit-button {
+    background-color: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .submit-button:hover {
+    background-color: #0f0;
+    color: #000;
+  }
+  .image-preview {
+    margin-top: 10px;
+  }
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #0f0;
+  }
+</style>
+
+<h2>Create Strength</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset>
+    <legend>Strength Details</legend>
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+  </fieldset>
+  <input type="submit" value="Create Strength" class="submit-button">
+</form>
+{% endblock %}
