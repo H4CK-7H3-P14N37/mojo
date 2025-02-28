@@ -1,21 +1,43 @@
+# Standard library imports
 import os
+from wsgiref.util import FileWrapper
+
+# Django imports
 from django import forms
 from django.conf import settings
 from django.contrib import admin
-from wsgiref.util import FileWrapper
-from django.http import Http404, StreamingHttpResponse
 from django.contrib.admin.helpers import ActionForm
-from reportgen.models import FindingScreenshot, Finding, EngagementFindingGroup, TestType, ClientContact, RTContact, TestFrom, RiskLevel, ScoreOverride, Strength, Improvement, Report, NessusConfig, NessusImportHistory, SolutionOverride
-from api_classes.doc_gen_api import OSSReportGen
+from django.http import Http404, StreamingHttpResponse
+from django.db import models
+from django.db.models import Q
+from django.db.models.functions import Cast
+
+# Third-party imports
 from import_export import resources
 from import_export.tmp_storages import CacheStorage
 from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
-from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter, ChoiceDropdownFilter
-from django.db.models import Q
-from django.db.models.functions import Cast
-from django.db import models
+from django_admin_listfilter_dropdown.filters import DropdownFilter
 
+# Local application imports
+from reportgen.models import (
+    FindingScreenshot,
+    Finding,
+    EngagementFindingGroup,
+    TestType,
+    ClientContact,
+    RTContact,
+    TestFrom,
+    RiskLevel,
+    ScoreOverride,
+    Strength,
+    Improvement,
+    Report,
+    NessusConfig,
+    NessusImportHistory,
+    SolutionOverride,
+)
+from api_classes.doc_gen_api import OSSReportGen
 
 @admin.action(
     description='Duplicate Findings',
@@ -176,6 +198,7 @@ def generate_report_type(queryset, report_type):
 
             if report_type.lower() == "executive":
                 filename_returned = obj.generate_doc(
+                    REPORTING_TEAM=report_obj.reporting_team,
                     REPORT_FOR=report_obj.report_for,
                     TITLE_MONTH_YEAR=report_obj.start_date.strftime("%B %Y"),
                     TEST_TYPE=report_obj.test_type.test_value,
@@ -203,6 +226,7 @@ def generate_report_type(queryset, report_type):
                 )
             elif report_type.lower() == "verbose":
                 filename_returned = obj.generate_doc(
+                    REPORTING_TEAM=report_obj.reporting_team,
                     REPORT_FOR=report_obj.report_for,
                     TITLE_MONTH_YEAR=report_obj.start_date.strftime("%B %Y"),
                     TEST_TYPE=report_obj.test_type.test_value,
@@ -230,6 +254,7 @@ def generate_report_type(queryset, report_type):
                 )
             else:
                 filename_returned = obj.generate_doc(
+                    REPORTING_TEAM=report_obj.reporting_team,
                     REPORT_FOR=report_obj.report_for,
                     TITLE_MONTH_YEAR=report_obj.start_date.strftime("%B %Y"),
                     TEST_TYPE=report_obj.test_type.test_value,

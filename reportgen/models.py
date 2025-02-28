@@ -2,8 +2,6 @@ from django.db import models
 from django.db.models import JSONField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-# TODO: add model to override solutions with screenshots model as well
-
 class FindingScreenshot(models.Model):
     finding_subtle = models.TextField()
     finding_screenshot = models.ImageField(upload_to='findings/')
@@ -217,25 +215,26 @@ class SolutionOverride(models.Model):
 
 
 class Report(models.Model):
+    reporting_team = models.CharField(max_length=190, null=False, blank=False, db_index=True)
     report_for = models.CharField(max_length=190, null=False, blank=False, db_index=True)
     test_type = models.ForeignKey(TestType, on_delete=models.PROTECT)
     start_date = models.DateTimeField(null=False, blank=False)
     end_date = models.DateTimeField(null=False, blank=False)
-    client_contacts = models.ManyToManyField(ClientContact)
-    rt_contacts = models.ManyToManyField(RTContact)
+    client_contacts = models.ManyToManyField(ClientContact, help_text="A client contact has to be created before it can be selected.")
+    rt_contacts = models.ManyToManyField(RTContact, help_text="A redteam contact has to be created before it can be selected.")
     scope_internal = models.TextField(null=True, blank=True)
     scope_external = models.TextField(null=True, blank=True)
     scope_wifi = models.TextField(null=True, blank=True)
     special_considerations = models.TextField(null=True, blank=True)
-    strengths = models.ManyToManyField(Strength)
-    improvement_areas = models.ManyToManyField(Improvement)
+    strengths = models.ManyToManyField(Strength, help_text="A strength has to be created before it can be selected.")
+    improvement_areas = models.ManyToManyField(Improvement, help_text="An improvement area has to be created before it can be selected.")
     test_from = models.ForeignKey(TestFrom, on_delete=models.PROTECT)
     compromise_success = models.BooleanField(default=True)
     risk_level = models.ForeignKey(RiskLevel, on_delete=models.PROTECT)
     filter_to_scores = models.BooleanField(default=True)
-    findings = models.ManyToManyField(EngagementFindingGroup)
-    score_overrides = models.ManyToManyField(ScoreOverride, blank=True)
-    solution_overrides = models.ManyToManyField(SolutionOverride, blank=True)
+    findings = models.ManyToManyField(EngagementFindingGroup, help_text="Findings have to be created before the grouping can be selected.")
+    score_overrides = models.ManyToManyField(ScoreOverride, blank=True, help_text="Scoring overrides have to be created before it can be selected.")
+    solution_overrides = models.ManyToManyField(SolutionOverride, blank=True, help_text="Solution overrides have to be created before it can be selected.")
 
     def __str__(self):
         return f'{self.report_for} - {self.start_date}'

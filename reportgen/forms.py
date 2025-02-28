@@ -1,5 +1,15 @@
 from django import forms
-from reportgen.models import Finding, FindingScreenshot, Report,ClientContact, RTContact, ScoreOverride, Strength, Improvement, SolutionOverride
+from reportgen.models import (
+    Finding,
+    FindingScreenshot,
+    Report,
+    ClientContact,
+    RTContact,
+    ScoreOverride,
+    Strength,
+    Improvement,
+    SolutionOverride,
+)
 
 
 class UniqueFindingForm(forms.Form):
@@ -52,6 +62,7 @@ class ReportForm(forms.ModelForm):
     class Meta:
         model = Report
         fields = [
+            "reporting_team",
             "report_for",
             "test_type",
             "start_date",
@@ -73,6 +84,7 @@ class ReportForm(forms.ModelForm):
             "solution_overrides",
         ]
         labels = {
+            "report_for": "Reporting Team",
             "report_for": "Report For",
             "test_type": "Test Type",
             "start_date": "Start Date",

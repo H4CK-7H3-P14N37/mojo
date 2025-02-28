@@ -1,25 +1,42 @@
-from django.shortcuts import render, redirect
-from reportgen.forms import (
-    UniqueFindingForm, FindingForm, FindingScreenshotForm, 
-    ReportForm, ClientContactForm, RTContactForm, ScoreOverrideForm,
-    StrengthForm, ImprovementForm, SolutionOverrideForm,
-    GenerateReportForm
-)
-from reportgen.models import (
-    Report, Finding, FindingScreenshot,ClientContact, 
-    RTContact, ScoreOverride, Strength, Improvement, SolutionOverride
-)
-from django.db.models import Count
+# Standard library imports
 from collections import Counter
+
+# Django imports
+from django.shortcuts import render, redirect
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
-from itertools import chain
 from django.forms import modelformset_factory
 from django.urls import reverse_lazy
 from django.views.generic import ListView, FormView, UpdateView, CreateView
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-from reportgen.admin import generate_report_type 
+
+# Local application imports
+from reportgen.forms import (
+    UniqueFindingForm,
+    FindingForm,
+    FindingScreenshotForm,
+    ReportForm,
+    ClientContactForm,
+    RTContactForm,
+    ScoreOverrideForm,
+    StrengthForm,
+    ImprovementForm,
+    SolutionOverrideForm,
+    GenerateReportForm,
+)
+from reportgen.models import (
+    Report,
+    Finding,
+    FindingScreenshot,
+    ClientContact,
+    RTContact,
+    ScoreOverride,
+    Strength,
+    Improvement,
+    SolutionOverride,
+)
+from reportgen.admin import generate_report_type
+
 
 # Create your views here.
 def unique_findings(request):

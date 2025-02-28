@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('reportgen', '0001_squashed_0002_rename_company_name_report_report_for'),
+        ('reportgen', '0002_rename_company_name_report_report_for'),
     ]
 
     operations = [

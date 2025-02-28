@@ -13,24 +13,44 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# Django imports
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+
+# Local application imports
 from reportgen.views import (
-    unique_findings,list_services,add_finding,
-    FindingListView,FindingUpdateView,ReportCreateView,
-    ReportListView,ReportEditView, ClientContactListView, 
-    GenerateReportView, ClientContactUpdateView, 
-    RTContactListView, RTContactUpdateView,
-    ScoreOverrideListView, ScoreOverrideUpdateView,
-    StrengthListView, StrengthUpdateView,
-    ImprovementListView, ImprovementUpdateView,
-    SolutionOverrideListView, SolutionOverrideUpdateView,
-    ClientContactCreateView, RTContactCreateView, ScoreOverrideCreateView,
-    StrengthCreateView, ImprovementCreateView, SolutionOverrideCreateView
+    unique_findings,
+    list_services,
+    add_finding,
+    FindingListView,
+    FindingUpdateView,
+    ReportCreateView,
+    ReportListView,
+    ReportEditView,
+    ClientContactListView,
+    GenerateReportView,
+    ClientContactUpdateView,
+    RTContactListView,
+    RTContactUpdateView,
+    ScoreOverrideListView,
+    ScoreOverrideUpdateView,
+    StrengthListView,
+    StrengthUpdateView,
+    ImprovementListView,
+    ImprovementUpdateView,
+    SolutionOverrideListView,
+    SolutionOverrideUpdateView,
+    ClientContactCreateView,
+    RTContactCreateView,
+    ScoreOverrideCreateView,
+    StrengthCreateView,
+    ImprovementCreateView,
+    SolutionOverrideCreateView,
 )
 from mojo.views import home
+
 
 urlpatterns = [
     path('', home, name="home_page"),
