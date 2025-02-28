@@ -32,6 +32,9 @@
   .error {
     color: red;
   }
+  hr {
+    color: #0f0;
+  }
 </style>
 
 <h2>Edit Report</h2>
@@ -49,6 +52,7 @@
           <span class="error">{{ field.errors }}</span>
         {% endif %}
       </div>
+      <hr>
     {% endfor %}
   </fieldset>
   
